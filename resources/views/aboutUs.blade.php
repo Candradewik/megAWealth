@@ -17,8 +17,8 @@
         <h3 class="mb-4">Our Offices</h3>
 
         <div class="offices d-flex" style="justify-content: space-between">
-            @for ($i = 0; $i<4; $i++)
-                <div class="card" style="width: 17rem;">
+            @for ($i = 0; $i<5; $i++)
+                <div class="card" style="width: 14rem;">
                     <img src="{{ asset('storage/office/office1.jpg')}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Office name</h5>

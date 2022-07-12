@@ -7,7 +7,7 @@
         <div class="image" style="width: 40vw">
             <img src="{{ asset('storage/office/office1.jpg')}}" alt="" style="width: 100%">
         </div>
-        <div class="form-container form-control d-flex p-4" style="flex-direction:column; justify-content: center; width:50vw">
+        <div class="form-container form-control d-flex p-4" style="flex-direction:column; justify-content: center; width:48vw">
             <form action="" method="">
                 @csrf
 

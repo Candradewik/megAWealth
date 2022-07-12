@@ -33,7 +33,7 @@
 
                 <div class="mb-3 bg-light">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" name="contact" class="form-control" id="location">
+                    <input type="text" name="location" class="form-control" id="location">
                 </div>
 
                 <div class="mb-3 bg-light">

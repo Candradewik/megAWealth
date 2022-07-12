@@ -37,7 +37,7 @@
 
                 <div class="mb-3 bg-light">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" value="Tes" name="contact" class="form-control" id="location">
+                    <input type="text" value="Tes" name="location" class="form-control" id="location">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Insert</button>

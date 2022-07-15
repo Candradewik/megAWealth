@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('offices', function (Blueprint $table) {
             $table->id();
+            $table->string('office_name');
+            $table->string('image');
+            $table->string('address');
+            $table->string('contact_name');
+            $table->integer('phone');
             $table->timestamps();
         });
     }

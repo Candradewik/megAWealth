@@ -16,7 +16,7 @@ class OfficeController extends Controller
     {
         $description = "megAWealth is a real estate company that was founded in 2008. Operated by ED, Inc., megAWealth offers a comprehensive list of real estate for sale and rent along with information. Today, more than ever, megAWealth is The Home of Home Search.";
 
-        $offices = Office::simplePaginate(5);
+        $offices = Office::paginate(5);
         return view('aboutUs', compact('description', 'offices'));
     }
 

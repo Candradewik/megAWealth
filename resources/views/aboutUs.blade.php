@@ -10,27 +10,27 @@
             </div>
 
             <p style="color: white; text-align: center">
-                Our company was founded at 2008 by our founder Renanda. At that time, we started as a law firm specializing in real estate and construction. In 2012, our company expanded our service to real estates with the included service of real estates lawyers. Today, our company have 5 offices throughout the states and is planning to build more.
+                {{$description}}
             </p>
         </div>
 
         <h3 class="mb-4">Our Offices</h3>
 
         <div class="offices d-flex" style="justify-content: space-between">
-            @foreach ($office as $o)
+            @foreach ($offices as $office)
                 <div class="card" style="width: 14rem;">
-                    <img src="{{ asset('storage/office/'.$o->image)}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/office/'.$office->image)}}" class="card-img-top" style="height: 150px" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $o->office_name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $o->address }}</h6>
-                        <p class="card-text"> <i>{{ $o->contact_name }}</i> - +{{ $o->phone }} </p>
+                        <h5 class="card-title">{{ $office->office_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $office->address }}</h6>
+                        <p class="card-text"> <i>{{ $office->contact_name }}</i> - +{{$office->phone}} </p>
                     </div>
                 </div>
             @endforeach
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">
-            Pagination
+            {{$offices->links()}}
         </div>
     </div>
 @endsection

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('location');
             $table->string('image');
-            $table->string('status');
+            $table->string('status')->default('open');
             $table->timestamps();
         });
     }

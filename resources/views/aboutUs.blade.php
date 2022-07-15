@@ -17,16 +17,16 @@
         <h3 class="mb-4">Our Offices</h3>
 
         <div class="offices d-flex" style="justify-content: space-between">
-            @for ($i = 0; $i<5; $i++)
+            @foreach ($office as $o)
                 <div class="card" style="width: 14rem;">
-                    <img src="{{ asset('storage/office/office1.jpg')}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/office/'.$o->image)}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Office name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Address</h6>
-                        <p class="card-text"> <i>Name</i> - Phone Number </p>
+                        <h5 class="card-title">{{ $o->office_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $o->address }}</h6>
+                        <p class="card-text"> <i>{{ $o->contact_name }}</i> - +{{ $o->phone }} </p>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">

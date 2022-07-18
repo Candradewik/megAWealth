@@ -20,7 +20,7 @@ class OfficeSeeder extends Seeder
             'image' => 'office1.jpg',
             'address' => '1269 Hickory Lane',
             'contact_name' => 'Mikal Vaz',
-            'phone' => 202528655711
+            'phone' => 2025286557
         ]);
 
         Office::query()->insert([
@@ -28,7 +28,7 @@ class OfficeSeeder extends Seeder
             'image' => 'office2.jpg',
             'address' => '4169 Libby Street',
             'contact_name' => 'Rico Tan',
-            'phone' => 310303127812
+            'phone' => 3103031278
         ]);
 
         Office::query()->insert([
@@ -36,7 +36,7 @@ class OfficeSeeder extends Seeder
             'image' => 'office3.jpg',
             'address' => '62 rue Adolphe Wurtz',
             'contact_name' => 'Kate Grace',
-            'phone' => 014632053613
+            'phone' => 0146320536
         ]);
 
         Office::query()->insert([
@@ -44,7 +44,7 @@ class OfficeSeeder extends Seeder
             'image' => 'office4.jpg',
             'address' => '377-1050, Kitagawa, Saitama',
             'contact_name' => 'Aya Wencl',
-            'phone' => 811452261521
+            'phone' => 8114522615
         ]);
 
         Office::query()->insert([
@@ -52,15 +52,15 @@ class OfficeSeeder extends Seeder
             'image' => 'office5.jpg',
             'address' => '3707 Hilltop Haven Drive',
             'contact_name' => 'Meg Volin',
-            'phone' => 973813628814
+            'phone' => 9738136288
         ]);
 
-        Office::query()->insert([
-            'office_name' => 'California Office',
-            'image' => 'office6.jpg',
-            'address' => '1033 Rainbow Road',
-            'contact_name' => 'Nick Lay',
-            'phone' => 850377940215
-        ]);
+        // Office::query()->insert([
+        //     'office_name' => 'California Office',
+        //     'image' => 'office6.jpg',
+        //     'address' => '1033 Rainbow Road',
+        //     'contact_name' => 'Nick Lay',
+        //     'phone' => 8503779402
+        // ]);
     }
 }

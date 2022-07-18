@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,13 @@ use App\Http\Controllers\OfficeController;
 |
 */
 
-Route::get('/', function () {
-    return view('aboutUs');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-
-
-
-
+//Login & Register Page
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('/register', [UserController::class, 'register'])->name('register');
 
 
 //About Us Page

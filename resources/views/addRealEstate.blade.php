@@ -5,7 +5,7 @@
 @section('content')
     <div class="content pt-4 pb-4 d-flex" style="margin-left: 50px; margin-right: 50px; justify-content: center">
         <div class="form-container form-control d-flex p-4" style="flex-direction:column; justify-content: center; width:50vw">
-            <form action="" method="" enctype="multipart/form-data">
+            <form action="/addRealEstate" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3 bg-light">
@@ -17,6 +17,10 @@
                     </select>
                 </div>
 
+                @error('sales')
+                    <div class="alert-danger mb-3">{{$message}}</div>
+                @enderror
+
                 <div class="mb-3 bg-light">
                     <label for="building" class="form-label">Building Type</label>
                     <select class="form-select" name="building" id="building">
@@ -26,20 +30,36 @@
                     </select>
                 </div>
 
+                @error('building')
+                    <div class="alert-danger mb-3">{{$message}}</div>
+                @enderror
+
                 <div class="mb-3 bg-light">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" id="price">
+                    <input type="number" name="price" value="{{old('price')}}" class="form-control" id="price">
                 </div>
+
+                @error('price')
+                    <div class="alert-danger mb-3">{{$message}}</div>
+                @enderror
 
                 <div class="mb-3 bg-light">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" name="location" class="form-control" id="location">
+                    <input type="text" name="location" value="{{old('location')}}" class="form-control" id="location">
                 </div>
+
+                @error('location')
+                    <div class="alert-danger mb-3">{{$message}}</div>
+                @enderror
 
                 <div class="mb-3 bg-light">
                     <label for="image" class="form-label">Upload the Image</label>
                     <input type="file" name="image" class="form-control" id="image">
                 </div>
+
+                @error('image')
+                    <div class="alert-danger mb-3">{{$message}}</div>
+                @enderror
 
                 <button type="submit" class="btn btn-primary">Insert</button>
               </form>

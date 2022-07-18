@@ -4,28 +4,29 @@
 
 @section('content')
     <div class="content pt-4 pb-4" style="margin-left: 50px; margin-right: 50px">
-        <a href="#" class="btn btn-primary mb-4">+ Add Office</a>
+        <a href="/addOffice" class="btn btn-primary mb-4">+ Add Office</a>
 
         <div class="offices d-flex" style="justify-content: space-between">
-            @for ($i = 0; $i<4; $i++)
-                <div class="card" style="width: 17rem;">
-                    <img src="{{ asset('storage/office/office1.jpg')}}" class="card-img-top" alt="...">
+            @foreach ($offices as $office)
+                <div class="card" style="width: 14rem;">
+                    <img src="{{ asset('storage/office/'.$office->image)}}" class="card-img-top" style="height: 150px" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Office name</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Address</h6>
-                        <p class="card-text"> <i>Name</i> - Phone Number </p>
+                        <h5 class="card-title">{{ $office->office_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ $office->address }}</h6>
+                        <p class="card-text"> <i>{{ $office->contact_name }}</i> - {{$office->phone}} </p>
 
                         <div class="cardButton d-flex" style="justify-content: space-between">
-                            <a href="#" class="btn btn-primary">Update</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="/updateOffice/{{$office->id}}" class="btn btn-primary">Update</a>
+                            <a href="/deleteOffice/{{$office->id}}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
-            @endfor
+            @endforeach
+
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">
-            Pagination
+            {{$offices->links()}}
         </div>
     </div>
 @endsection

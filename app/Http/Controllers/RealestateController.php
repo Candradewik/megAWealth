@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Office;
+use App\Models\Realestate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class OfficeController extends Controller
+class RealestateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,18 +15,23 @@ class OfficeController extends Controller
      */
     public function index()
     {
-        $description = "megAWealth is a real estate company that was founded in 2008. Operated by ED, Inc., megAWealth offers a comprehensive list of real estate for sale and rent along with information. Today, more than ever, megAWealth is The Home of Home Search.";
-
-        $offices = Office::paginate(5);
-        return view('aboutUs', compact('description', 'offices'));
+        //
     }
 
-    public function manageCompany()
+    public function manageRealestate()
     {
-        $offices = Office::paginate(5);
-        return view('manageCompany', compact('offices'));
+        $realestates = Realestate::paginate(4);
+        return view('manageRealEstate', compact('realestates'));
     }
 
+    public function updateStatus($id){
+        $realestate = Realestate::find($id);
+        $realestate->status = "Transaction completed";
+
+        $realestate->save();
+
+        return redirect()->back();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +40,7 @@ class OfficeController extends Controller
      */
     public function create()
     {
-        return view('addOffice');
+        return view('addRealEstate');
     }
 
     /**
@@ -47,30 +52,32 @@ class OfficeController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'address' => 'required',
-            'contact' => 'required',
-            'phone' => 'required',
+            'sales' => 'required|in:Sale,Rent',
+            'building' => 'required|in:House,Apartment',
+            'price' => 'required',
+            'location' => 'required',
             'image' => 'required|image|max: 10000| mimes:jpg,jpeg,png'
         ]);
 
+
         if($validator->fails()){
-            return redirect('/addOffice')->withErrors($validator)->withInput();
+            return redirect('/addRealEstate')->withErrors($validator)->withInput();
         }
 
-        $office = new Office();
-        $office->office_name = $request->name;
-        $office->address = $request->address;
-        $office->contact_name = $request->contact;
-        $office->phone = $request->phone;
+        $realestate = new Realestate();
+        $realestate->sales_type = $request->sales;
+        $realestate->building_type = $request->building;
+        $realestate->price = $request->price;
+        $realestate->location = $request->location;
 
         $image = time().$request->image->getClientOriginalName();
-        $office->image = $image;
+        $realestate->image = $image;
 
-        $store = $request->image->storeAs('public/office', $image);
-        $office->save();
+        $store = $request->image->storeAs('public/realestate', $image);
 
-        return redirect('/addOffice');
+        $realestate->save();
+
+        return redirect('/addRealEstate');
     }
 
     /**
@@ -92,8 +99,8 @@ class OfficeController extends Controller
      */
     public function edit($id)
     {
-        $office = Office::find($id);
-        return view('updateOffice', compact('office'));
+        $realestate = Realestate::find($id);
+        return view('updateRealEstate', compact('realestate'));
     }
 
     /**
@@ -106,25 +113,26 @@ class OfficeController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'address' => 'required',
-            'contact' => 'required',
-            'phone' => 'required',
+            'sales' => 'required|in:Sale,Rent',
+            'building' => 'required|in:House,Apartment',
+            'price' => 'required',
+            'location' => 'required',
         ]);
+
 
         if($validator->fails()){
             return redirect()->back()->withErrors($validator);
         }
 
-        $office = Office::find($id);
-        $office->office_name = $request->name;
-        $office->address = $request->address;
-        $office->contact_name = $request->contact;
-        $office->phone = $request->phone;
+        $realestate = Realestate::find($id);
+        $realestate->sales_type = $request->sales;
+        $realestate->building_type = $request->building;
+        $realestate->price = $request->price;
+        $realestate->location = $request->location;
 
-        $office->save();
+        $realestate->save();
 
-        return redirect('/manageCompany');
+        return redirect('/manageRealEstate');
     }
 
     /**
@@ -135,8 +143,8 @@ class OfficeController extends Controller
      */
     public function destroy($id)
     {
-        $office = Office::find($id);
-        $office->delete();
+        $realestate = Realestate::find($id);
+        $realestate->delete();
 
         return redirect()->back();
     }

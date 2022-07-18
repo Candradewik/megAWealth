@@ -18,10 +18,10 @@
                   <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manage Company</a>
+                    <a class="nav-link" href="/manageCompany">Manage Company</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manage Real Estates</a>
+                    <a class="nav-link" href="/manageRealEstate">Manage Real Estates</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Logout</a>

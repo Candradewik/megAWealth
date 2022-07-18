@@ -24,12 +24,19 @@ use App\Http\Controllers\RealestateController;
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 
+//Home
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/buy', [RealestateController::class, 'buy']);
+Route::get('/rent', [RealestateController::class, 'rent']);
+Route::get('/search', [RealestateController::class, 'search']);
 
 //About Us Page
-Route::get('/aboutUs', [OfficeController::class, 'index'])->name('aboutUs');
+Route::get('/aboutUs', [OfficeController::class, 'index']);
 
-
-//Manage Office
+//Manage Company
 Route::get('/manageCompany', [OfficeController::class, 'manageCompany']);
 
 Route::get('/addOffice', [OfficeController::class, 'create']);

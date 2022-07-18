@@ -18,6 +18,27 @@ class RealestateController extends Controller
         //
     }
 
+    public function rent()
+    {
+        $realestates = Realestate::query()->where('sales_type', '=', 'Rent')->paginate(4);
+        return view('rent', compact('realestates'));
+    }
+
+    public function buy()
+    {
+        $realestates = Realestate::query()->where('sales_type', '=', 'Sale')->paginate(4);
+        return view('buy', compact('realestates'));
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->search;
+
+        $realestates = Realestate::query()->where('sales_type', 'LIKE', $keyword)->orWhere('building_type', 'LIKE', $keyword)->orWhere('location', 'LIKE', "%".$keyword."%")->paginate(4);
+
+        return view('searchResult', compact('keyword', 'realestates'));
+    }
+
     public function manageRealestate()
     {
         $realestates = Realestate::paginate(4);

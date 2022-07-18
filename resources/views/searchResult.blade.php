@@ -4,40 +4,48 @@
 
 @section('content')
     <div class="content pt-4 pb-4" style="margin-left: 50px; margin-right: 50px">
-        <h3 class="mb-4">Showing Search Results for Keyword</h3>
+        <h3 class="mb-4">Showing Search Results for {{$keyword}}</h3>
 
-        <div class="offices d-flex" style="justify-content: space-between">
-            @for ($i = 0; $i<2; $i++)
-                <div class="card" style="width: 17rem;">
-                    <img src="{{ asset('storage/office/office1.jpg')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">$price / month</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Address</h6>
-                        <span class="badge bg-info text-dark">Apartement</span>
+        @if ($realestates->isEmpty())
+            <p>No data for "{{$keyword}}" yet</p>
+        @else
+            <div class="realestates d-flex" style="justify-content: space-between">
+                @foreach ($realestates as $realestate)
+                    <div class="card" style="width: 17rem;">
+                        <img src="{{ asset('storage/realestate/'.$realestate->image)}}" class="card-img-top" alt="..." style="height:150px">
+                        <div class="card-body d-flex" style="flex-direction: column; justify-content:space-between">
+                            <div>
+                                <h5 class="card-title">
+                                    @if ($realestate->sales_type == "Sale")
+                                        ${{$realestate->price}}
+                                    @else
+                                        ${{$realestate->price}} / month
+                                    @endif
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$realestate->location}}</h6>
+                            </div>
 
-                        <div class="card text-center mt-3">
-                            <a href="#" class="btn btn-primary">Rent</a>
+                            <div>
+                                <span class="badge bg-info text-dark">{{$realestate->building_type}}</span>
+                                <div class="card text-center mt-3">
+                                    <a href="#" class="btn btn-primary">
+                                        @if ($realestate->sales_type == "Sale")
+                                        Buy
+                                        @else
+                                        Rent
+                                        @endif
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+            </div>
 
-                <div class="card" style="width: 17rem;">
-                    <img src="{{ asset('storage/office/office1.jpg')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">$price</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Address</h6>
-                        <span class="badge bg-info text-dark">House</span>
+            <div class="d-flex mt-4" style="justify-content: center">
+                {{$realestates->withQueryString()->links()}}
+            </div>
 
-                        <div class="card text-center mt-3">
-                            <a href="#" class="btn btn-primary">Buy</a>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-        </div>
-
-        <div class="d-flex mt-4" style="justify-content: center">
-            Pagination
-        </div>
+        @endif
     </div>
 @endsection

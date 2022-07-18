@@ -9,14 +9,14 @@
                 <h1 style="text-align: center">Find Your Future Home</h1>
             </div>
 
-            <form class="d-flex" action="" style="margin-bottom: 30px">
-                <input class="form-control me-2" type="search" placeholder="Enter a City, Property Type, Buy or Rent" aria-label="Search">
+            <form class="d-flex" action="{{url('/search')}}" method="get" style="margin-bottom: 30px">
+                <input class="form-control me-2" name="search" type="search" placeholder="Enter a City, Property Type, Buy or Rent" aria-label="Search">
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
 
         <div class="menus d-flex" style="justify-content: space-between">
-            <a href="" style="text-decoration: none; color:black">
+            <a href="/rent" style="text-decoration: none; color:black">
                 <div class="card" style="width: 18rem;">
                     <img src="{{ asset('storage/menu/rent.png')}}" class="card-img-top" alt="...">
                     <div class="card-body" style="background-color: navy">
@@ -25,7 +25,7 @@
                 </div>
             </a>
 
-            <a href="" style="text-decoration: none; color:black">
+            <a href="/buy" style="text-decoration: none; color:black">
                 <div class="card" style="width: 18rem;">
                     <img src="{{ asset('storage/menu/sale.jpg')}}" class="card-img-top" alt="...">
                     <div class="card-body" style="background-color: navy">
@@ -34,7 +34,7 @@
                 </div>
             </a>
 
-            <a href="" style="text-decoration: none; color:black">
+            <a href="/aboutUs" style="text-decoration: none; color:black">
                 <div class="card" style="width: 18rem;">
                     <img src="{{ asset('storage/menu/about.jpg')}}" class="card-img-top" alt="...">
                     <div class="card-body" style="background-color: navy">

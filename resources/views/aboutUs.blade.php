@@ -20,10 +20,15 @@
             @foreach ($offices as $office)
                 <div class="card" style="width: 14rem;">
                     <img src="{{ asset('storage/office/'.$office->image)}}" class="card-img-top" style="height: 150px" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $office->office_name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $office->address }}</h6>
-                        <p class="card-text"> <i>{{ $office->contact_name }}</i> - +{{$office->phone}} </p>
+                    <div class="card-body d-flex" style="flex-direction: column; justify-content:space-between">
+                        <div>
+                            <h5 class="card-title">{{ $office->office_name }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $office->address }}</h6>
+                        </div>
+
+                        <div>
+                            <p class="card-text"> <i>{{ $office->contact_name }}</i> - +{{$office->phone}} </p>
+                        </div>
                     </div>
                 </div>
             @endforeach

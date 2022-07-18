@@ -9,7 +9,7 @@
                 <h1 style="text-align: center">Find Your Future Home</h1>
             </div>
 
-            <form class="d-flex" action="{{url('/search')}}" method="get" style="margin-bottom: 30px">
+            <form class="d-flex" action="/search" method="get" style="margin-bottom: 30px">
                 <input class="form-control me-2" name="search" type="search" placeholder="Enter a City, Property Type, Buy or Rent" aria-label="Search">
                 <button class="btn btn-primary" type="submit">Search</button>
             </form>

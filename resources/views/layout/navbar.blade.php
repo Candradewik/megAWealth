@@ -35,7 +35,7 @@
                 @auth
                 @if (Illuminate\Support\Facades\Gate::allows('isMember'))
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
+                    <a class="nav-link" href="/cart">Cart</a>
                 </li>
                 @endif
                 @if (Illuminate\Support\Facades\Gate::allows('isAdmin'))

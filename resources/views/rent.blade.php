@@ -1,6 +1,6 @@
 @extends('layout.navbar')
 
-@section('title', 'Buy')
+@section('title', 'Rent')
 
 @section('content')
     <div class="content pt-4 pb-4" style="margin-left: 50px; margin-right: 50px">
@@ -19,7 +19,7 @@
                         <div>
                             <span class="badge bg-info text-dark">{{$realestate->building_type}}</span>
                             <div class="card text-center mt-3">
-                                <a href="#" class="btn btn-primary">Rent</a>
+                                <a href="/addToCart/{{$realestate->id}}" class="btn btn-primary">Rent</a>
                             </div>
                         </div>
                     </div>

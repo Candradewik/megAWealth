@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Realestate extends Model
 {
     use HasFactory;
-    public function carts(){
-        return $this->belongsToMany(Cart::class);
+    public function users(){
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

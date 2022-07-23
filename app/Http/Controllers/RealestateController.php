@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Realestate;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RealestateController extends Controller
@@ -168,5 +170,61 @@ class RealestateController extends Controller
         $realestate->delete();
 
         return redirect()->back();
+    }
+
+    public function cart(){
+        $userId = Auth::id();
+        $user = User::find($userId);
+
+        return view('cart', compact('user'));
+
+        //$realestates = DB::table('realestate_user')->where('user_id', $userId)->paginate(4);
+
+        //return view('cart', compact('realestates'));
+    }
+
+    public function addToCart($id){
+        $userId = Auth::id();
+        $realestate = Realestate::find($id);
+
+        if($realestate->users()->where('user_id', $userId)->exists()){
+            return redirect()->back();
+        }
+
+        else{
+            $realestate->status = "Cart";
+            $realestate->save();
+
+            $realestate->users()->attach($userId);
+            return redirect()->back();
+        }
+    }
+
+    public function removeFromCart($id){
+        $userId = Auth::id();
+        $realestate = Realestate::find($id);
+
+        $realestate->users()->detach($userId);
+
+        // if(){
+        //     $realestate->status = "open";
+        //     $realestate->save();
+        // }
+
+        return redirect('/cart');
+    }
+
+    public function checkout(){
+        // $userId = Auth::id();
+        // $realestate = Realestate::find();
+
+        // $realestate->users()->detach($userId);
+
+        // // if(){
+        // //     $realestate->status = "open";
+        // //     $realestate->save();
+        // // }
+
+        // return redirect('/cart');
     }
 }

@@ -1,4 +1,4 @@
-@extends('layout.member')
+@extends('layout.main')
 
 @section('title', 'Cart')
 

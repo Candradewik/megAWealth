@@ -17,6 +17,7 @@
                 <li class="nav-item" style="color: white">
                   <a class="nav-link" href="/">Home</a>
                 </li>
+                @if (Illuminate\Support\Facades\Gate::allows('isMember'))
                 <li class="nav-item">
                     <a class="nav-link" href="/aboutUs">About Us</a>
                 </li>
@@ -26,15 +27,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/rent">Rent</a>
                 </li>
-                @guest
-                <li class="nav-item">
-                    <a class="nav-link" href={{route('login')}}>Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href={{route('register')}}>Register</a>
-                </li>
-                @endguest
-                @if (Illuminate\Support\Facades\Gate::allows('isMember'))
                 <li class="nav-item">
                     <a class="nav-link" href="/cart">Cart</a>
                 </li>
@@ -44,6 +36,22 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/manageRealEstate">Manage Real Estates</a>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="/aboutUs">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/buy">Buy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rent">Rent</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{route('login')}}>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{route('register')}}>Register</a>
                 </li>
                 @endif
                 @auth

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserMiddleware
+class MemberMiddleware
 {
     /**
      * Handle an incoming request.
@@ -19,6 +19,8 @@ class UserMiddleware
     {
         if(!Auth::check()){
             return redirect()->route('login_page');
+        }else if(Auth::user()->role !== 'member'){
+            return abort(403);
         }
         return $next($request);
     }

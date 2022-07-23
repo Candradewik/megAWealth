@@ -20,6 +20,11 @@ use App\Http\Controllers\RealestateController;
 //     return view('welcome');
 // });
 
+//Home
+Route::get('/', function () {
+    return view('home');
+});
+
 //Login & Register Page
 Route::group(['prefix' => 'auth'], function (){
     Route::get('login', [\App\Http\Controllers\UserController::class, 'index_login'])->name('login_page');
@@ -27,11 +32,6 @@ Route::group(['prefix' => 'auth'], function (){
     Route::post('register', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
     Route::post('login', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
     Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
-});
-
-//Home
-Route::get('/home', function () {
-    return view('home');
 });
 
 Route::get('/buy', [RealestateController::class, 'buy']);

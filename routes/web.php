@@ -34,7 +34,7 @@ Route::group(['prefix' => 'auth'], function (){
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
 });
 
-Route::group(['middleware' => 'guest', 'middleware' => 'MemberMiddleware'], function (){
+Route::group(['middleware' => 'NotAdminMiddleware'], function (){
     Route::get('/buy', [RealestateController::class, 'buy']);
     Route::get('/rent', [RealestateController::class, 'rent']);
     Route::get('/aboutUs', [OfficeController::class, 'index']);

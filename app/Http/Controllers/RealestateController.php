@@ -181,6 +181,8 @@ class RealestateController extends Controller
         //$realestates = DB::table('realestate_user')->where('user_id', $userId)->paginate(4);
 
         //return view('cart', compact('realestates'));
+
+        //Not yet paginated
     }
 
     public function addToCart($id){
@@ -210,6 +212,8 @@ class RealestateController extends Controller
         //     $realestate->status = "open";
         //     $realestate->save();
         // }
+
+        //Status hasn't changed yet
 
         return redirect('/cart');
     }

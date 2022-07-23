@@ -215,16 +215,16 @@ class RealestateController extends Controller
     }
 
     public function checkout(){
-        // $userId = Auth::id();
-        // $realestate = Realestate::find();
+        $userId = Auth::id();
+        $user = User::find($userId);
 
-        // $realestate->users()->detach($userId);
+        foreach($user->realestates as $realestate){
+            $realestate->status = "Transaction completed";
+            $realestate->save();
+        }
 
-        // // if(){
-        // //     $realestate->status = "open";
-        // //     $realestate->save();
-        // // }
+        $user->realestates()->detach();
 
-        // return redirect('/cart');
+        return redirect('/cart');
     }
 }

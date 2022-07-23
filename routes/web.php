@@ -92,4 +92,5 @@ Route::get('/updateStatus/{id}', [RealestateController::class, 'updateStatus']);
 Route::get('/cart', [RealestateController::class, 'cart']);
 Route::get('/addToCart/{id}', [RealestateController::class, 'addToCart']);
 Route::get('/removeFromCart/{id}', [RealestateController::class, 'removeFromCart']);
+Route::get('/checkout', [RealestateController::class, 'checkout']);
 

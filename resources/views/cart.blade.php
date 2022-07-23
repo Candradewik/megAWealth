@@ -29,11 +29,11 @@
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">
-
+            Pagination
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">
-            <a href="#" class="btn btn-primary">Checkout</a>
+            <a href="/checkout" class="btn btn-primary">Checkout</a>
         </div>
     </div>
 @endsection

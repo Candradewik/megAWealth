@@ -21,8 +21,13 @@ use App\Http\Controllers\RealestateController;
 // });
 
 //Login & Register Page
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::get('/register', [UserController::class, 'register'])->name('register');
+Route::group(['prefix' => 'auth'], function (){
+    Route::get('login', [\App\Http\Controllers\UserController::class, 'index_login'])->name('login_page');
+    Route::get('register', [\App\Http\Controllers\UserController::class, 'index_register'])->name('register_page');
+    Route::post('register', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
+    Route::post('login', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
+    Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
+});
 
 //Home
 Route::get('/home', function () {

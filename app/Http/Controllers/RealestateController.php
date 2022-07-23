@@ -176,13 +176,9 @@ class RealestateController extends Controller
         $userId = Auth::id();
         $user = User::find($userId);
 
-        return view('cart', compact('user'));
+        $realestates = $user->realestates()->paginate(4);
 
-        //$realestates = DB::table('realestate_user')->where('user_id', $userId)->paginate(4);
-
-        //return view('cart', compact('realestates'));
-
-        //Not yet paginated
+        return view('cart', compact('realestates'));
     }
 
     public function addToCart($id){

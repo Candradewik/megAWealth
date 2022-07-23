@@ -7,7 +7,7 @@
         <h3 class="mb-4">Your Cart</h3>
 
         <div class="d-flex" style="justify-content: space-between">
-            @foreach ($user->realestates as $realestate)
+            @foreach ($realestates as $realestate)
                 <div class="card" style="width: 17rem;">
                     <img src="{{ asset('storage/realestate/'.$realestate->image)}}" class="card-img-top" alt="..." style="height:150px">
                     <div class="card-body d-flex" style="flex-direction: column; justify-content:space-between">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">
-            Pagination
+            {{$realestates->links()}}
         </div>
 
         <div class="d-flex mt-4" style="justify-content: center">

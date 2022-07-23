@@ -204,12 +204,16 @@ class RealestateController extends Controller
 
         $realestate->users()->detach($userId);
 
-        // if(){
-        //     $realestate->status = "open";
-        //     $realestate->save();
-        // }
+        if($realestate->users()->exists()){
+            return redirect()->back();
+        }
 
-        //Status hasn't changed yet
+        else{
+            $realestate->status = "open";
+            $realestate->save();
+
+            return redirect()->back();
+        }
 
         return redirect('/cart');
     }
@@ -221,6 +225,7 @@ class RealestateController extends Controller
         foreach($user->realestates as $realestate){
             $realestate->status = "Transaction completed";
             $realestate->save();
+            $realestate->users()->detach();
         }
 
         $user->realestates()->detach();

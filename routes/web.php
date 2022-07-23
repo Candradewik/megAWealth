@@ -48,9 +48,9 @@ Route::get('/search', [RealestateController::class, 'search']);
 Route::get('/aboutUs', [OfficeController::class, 'index']);
 
 // ADMIN
-Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function (){
+Route::group(['middleware' => 'AdminMiddleware'], function (){
     //Manage Company
-    Route::get('/manageCompany', [OfficeController::class, 'manageCompany']);
+    Route::get('/manageCompany', [OfficeController::class, 'manageCompany'])->name('manageCompany');
     Route::get('/addOffice', [OfficeController::class, 'create']);
     Route::post('/addOffice', [OfficeController::class, 'store']);
     Route::get('/updateOffice/{id}', [OfficeController::class, 'edit']);
@@ -58,7 +58,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function 
     Route::get('/deleteOffice/{id}', [OfficeController::class, 'destroy']);
 
     //Manage Real Estate
-    Route::get('/manageRealEstate', [RealestateController::class, 'manageRealEstate']);
+    Route::get('/manageRealEstate', [RealestateController::class, 'manageRealEstate'])->name('manageRealEstate');
     Route::get('/addRealEstate', [RealestateController::class, 'create']);
     Route::post('/addRealEstate', [RealestateController::class, 'store']);
     Route::get('/updateRealEstate/{id}', [RealestateController::class, 'edit']);

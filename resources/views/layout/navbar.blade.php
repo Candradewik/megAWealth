@@ -32,10 +32,10 @@
                 </li>
                 @elseif (Illuminate\Support\Facades\Gate::allows('isAdmin'))
                 <li class="nav-item">
-                    <a class="nav-link" href="/manageCompany">Manage Company</a>
+                    <a class="nav-link" href={{ route('manageCompany') }}>Manage Company</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/manageRealEstate">Manage Real Estates</a>
+                    <a class="nav-link" href={{ route('manageRealEstate') }}>Manage Real Estates</a>
                 </li>
                 @else
                 <li class="nav-item">

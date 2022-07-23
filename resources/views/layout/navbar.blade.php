@@ -26,19 +26,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/rent">Rent</a>
                 </li>
+                @guest
                 <li class="nav-item">
                     <a class="nav-link" href={{route('login')}}>Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={{route('register')}}>Register</a>
                 </li>
-                @auth
+                @endguest
                 @if (Illuminate\Support\Facades\Gate::allows('isMember'))
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cart</a>
                 </li>
-                @endif
-                @if (Illuminate\Support\Facades\Gate::allows('isAdmin'))
+                @elseif (Illuminate\Support\Facades\Gate::allows('isAdmin'))
                 <li class="nav-item">
                     <a class="nav-link" href="/manageCompany">Manage Company</a>
                 </li>
@@ -46,6 +46,7 @@
                     <a class="nav-link" href="/manageRealEstate">Manage Real Estates</a>
                 </li>
                 @endif
+                @auth
                 <li class="nav-item">
                     <a class="nav-link" href={{route('logout')}}>Logout</a>
                 </li>

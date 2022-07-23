@@ -27,10 +27,12 @@ Route::get('/', function () {
 
 //Login & Register Page
 Route::group(['prefix' => 'auth'], function (){
-    Route::get('login', [\App\Http\Controllers\UserController::class, 'index_login'])->name('login_page');
-    Route::get('register', [\App\Http\Controllers\UserController::class, 'index_register'])->name('register_page');
-    Route::post('register', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
-    Route::post('login', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
+    Route::middleware('guest')->group(function () {
+        Route::get('login', [\App\Http\Controllers\UserController::class, 'index_login'])->name('login_page');
+        Route::get('register', [\App\Http\Controllers\UserController::class, 'index_register'])->name('register_page');
+        Route::post('register', [\App\Http\Controllers\UserController::class, 'register'])->name('register');
+        Route::post('login', [\App\Http\Controllers\UserController::class, 'login'])->name('login');
+    });
     Route::get('logout', [\App\Http\Controllers\UserController::class, 'logout'])->name('logout');
 });
 

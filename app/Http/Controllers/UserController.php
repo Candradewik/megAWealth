@@ -45,7 +45,7 @@ class UserController extends Controller
 
         if(Auth::attempt($credentials)){
             Cookie::queue('LoginCookie', $request->input('email'), 3);
-            return redirect('home');
+            return redirect('/');
         }else{
             return redirect()->back()->withErrors(['creds' => 'Invalid Account']);
         }

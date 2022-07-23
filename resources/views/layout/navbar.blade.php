@@ -15,16 +15,16 @@
         <div class="menu">
             <ul class="navbar-nav">
                 <li class="nav-item" style="color: white">
-                  <a class="nav-link" href="/home">Home</a>
+                  <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/aboutUs">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Buy</a>
+                    <a class="nav-link" href="/buy">Buy</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Rent</a>
+                    <a class="nav-link" href="/rent">Rent</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cart</a>
@@ -42,7 +42,7 @@
                     <a class="nav-link" href="/manageRealEstate">Manage Real Estates</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link" href={{route('logout')}}>Logout</a>
                   </li>
               </ul>
           </div>

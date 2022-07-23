@@ -1,4 +1,4 @@
-@extends('layout.guest')
+@extends('layout.navbar')
 
 @section('title', 'Register')
 

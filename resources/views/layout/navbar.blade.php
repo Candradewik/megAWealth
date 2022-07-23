@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark d-flex ps-4 pe-4" style="background-color: navy; justify-content:space-between">
-        <a class="navbar-brand" href="#"> MEGAWEALTH </a>
+        <a class="navbar-brand" href="/"> MEGAWEALTH </a>
 
         <div class="menu">
             <ul class="navbar-nav">
@@ -27,24 +27,30 @@
                     <a class="nav-link" href="/rent">Rent</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href={{route('login')}}>Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{route('register')}}>Register</a>
+                </li>
+                @auth
+                @if (Illuminate\Support\Facades\Gate::allows('isMember'))
+                <li class="nav-item">
                     <a class="nav-link" href="#">Cart</a>
-                  </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={{route('login')}}>Login</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href={{route('register')}}>Register</a>
-                </li>
+                @endif
+                @if (Illuminate\Support\Facades\Gate::allows('isAdmin'))
                 <li class="nav-item">
                     <a class="nav-link" href="/manageCompany">Manage Company</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/manageRealEstate">Manage Real Estates</a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a class="nav-link" href={{route('logout')}}>Logout</a>
-                  </li>
-              </ul>
+                </li>
+                @endauth
+            </ul>
           </div>
       </nav>
 

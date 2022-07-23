@@ -23,7 +23,6 @@ use App\Http\Controllers\RealestateController;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/aboutUs', [OfficeController::class, 'index']);
 
 Route::group(['prefix' => 'auth'], function (){
     Route::group(['middleware' => 'guest'], function (){
@@ -38,6 +37,7 @@ Route::group(['prefix' => 'auth'], function (){
 Route::group(['middleware' => 'guest', 'middleware' => 'MemberMiddleware'], function (){
     Route::get('/buy', [RealestateController::class, 'buy']);
     Route::get('/rent', [RealestateController::class, 'rent']);
+    Route::get('/aboutUs', [OfficeController::class, 'index']);
 });
 
 Route::group(['middleware' => 'MemberMiddleware'], function (){

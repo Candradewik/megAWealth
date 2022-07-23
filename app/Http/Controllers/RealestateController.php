@@ -22,13 +22,13 @@ class RealestateController extends Controller
 
     public function rent()
     {
-        $realestates = Realestate::query()->where('sales_type', '=', 'Rent')->paginate(4);
+        $realestates = Realestate::query()->where('sales_type', '=', 'Rent')->where('status', '<>', 'Transaction completed')->paginate(4);
         return view('rent', compact('realestates'));
     }
 
     public function buy()
     {
-        $realestates = Realestate::query()->where('sales_type', '=', 'Sale')->paginate(4);
+        $realestates = Realestate::query()->where('sales_type', '=', 'Sale')->where('status', '<>', 'Transaction completed')->paginate(4);
         return view('buy', compact('realestates'));
     }
 

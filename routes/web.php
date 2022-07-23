@@ -38,6 +38,12 @@ Route::group(['prefix' => 'auth'], function (){
 
 Route::get('/buy', [RealestateController::class, 'buy']);
 Route::get('/rent', [RealestateController::class, 'rent']);
+
+Route::get('/cart', [RealestateController::class, 'cart']);
+Route::get('/addToCart/{id}', [RealestateController::class, 'addToCart']);
+Route::get('/removeFromCart/{id}', [RealestateController::class, 'removeFromCart']);
+Route::get('/checkout', [RealestateController::class, 'checkout']);
+
 Route::get('/search', [RealestateController::class, 'search']);
 Route::get('/aboutUs', [OfficeController::class, 'index']);
 
@@ -59,11 +65,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'AdminMiddleware'], function 
     Route::post('/updateRealEstate/{id}', [RealestateController::class, 'update']);
     Route::get('/deleteRealEstate/{id}', [RealestateController::class, 'destroy']);
     Route::get('/updateStatus/{id}', [RealestateController::class, 'updateStatus']);
-});
-
-Route::prefix('cart')-> group (function (){
-    Route::get('/cart', [RealestateController::class, 'cart']);
-    Route::get('/addToCart/{id}', [RealestateController::class, 'addToCart']);
-    Route::get('/removeFromCart/{id}', [RealestateController::class, 'removeFromCart']);
-    Route::get('/checkout', [RealestateController::class, 'checkout']);
 });

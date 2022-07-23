@@ -25,7 +25,11 @@
                         <div>
                             <span class="badge bg-info text-dark">{{$realestate->building_type}}</span>
                             <div class="card text-center mt-3">
+                                @if (!Auth::user())
+                                <a href={{ route('login') }} class="btn btn-primary">Buy</a>
+                                @else
                                 <a href="/addToCart/{{$realestate->id}}" class="btn btn-primary">Buy</a>
+                                @endif
                             </div>
                         </div>
                     </div>

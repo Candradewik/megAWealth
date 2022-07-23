@@ -20,12 +20,11 @@ use App\Http\Controllers\RealestateController;
 //     return view('welcome');
 // });
 
-//Home
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/aboutUs', [OfficeController::class, 'index']);
 
-//Login & Register Page
 Route::group(['prefix' => 'auth'], function (){
     Route::group(['middleware' => 'guest'], function (){
         Route::get('login', [UserController::class, 'index_login'])->name('login_page');
@@ -36,16 +35,20 @@ Route::group(['prefix' => 'auth'], function (){
     Route::get('logout', [UserController::class, 'logout'])->name('logout');
 });
 
-Route::get('/buy', [RealestateController::class, 'buy']);
-Route::get('/rent', [RealestateController::class, 'rent']);
+Route::group(['middleware' => 'guest', 'middleware' => 'MemberMiddleware'], function (){
+    Route::get('/buy', [RealestateController::class, 'buy']);
+    Route::get('/rent', [RealestateController::class, 'rent']);
+});
 
-Route::get('/cart', [RealestateController::class, 'cart']);
-Route::get('/addToCart/{id}', [RealestateController::class, 'addToCart']);
-Route::get('/removeFromCart/{id}', [RealestateController::class, 'removeFromCart']);
-Route::get('/checkout', [RealestateController::class, 'checkout']);
+Route::group(['middleware' => 'MemberMiddleware'], function (){
+    Route::get('/cart', [RealestateController::class, 'cart']);
+    Route::get('/addToCart/{id}', [RealestateController::class, 'addToCart']);
+    Route::get('/removeFromCart/{id}', [RealestateController::class, 'removeFromCart']);
+    Route::get('/checkout', [RealestateController::class, 'checkout']);
+});
 
 Route::get('/search', [RealestateController::class, 'search']);
-Route::get('/aboutUs', [OfficeController::class, 'index']);
+
 
 // ADMIN
 Route::group(['middleware' => 'AdminMiddleware'], function (){

@@ -3,6 +3,13 @@
 @section('title', 'Home')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong> {{session('success')}} </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="content pt-4 pb-4" style="margin-left: 50px; margin-right: 50px">
         <div class="banner mb-4 ps-4 pe-4 d-flex" style="flex-direction:column; justify-content:space-around; height: 300px; width:100%; background-size: cover; background-image: url('{{ asset('storage/banner/home.jpg')}}')">
             <div class="title" style="color:white">

@@ -6,6 +6,12 @@
     <div class="content pt-4 pb-4" style="margin-left: 50px; margin-right: 50px">
         <h3 class="mb-4">Showing Real Estates For Sale</h3>
 
+        @if ($realestates->isEmpty())
+            <div>
+                <h5 style="text-align: center"> No data in buy yet</h5>
+            </div>
+
+        @else
         <div class="realestates d-flex" style="justify-content: space-between">
             @foreach ($realestates as $realestate)
                 <div class="card" style="width: 17rem;">
@@ -19,7 +25,7 @@
                         <div>
                             <span class="badge bg-info text-dark">{{$realestate->building_type}}</span>
                             <div class="card text-center mt-3">
-                                <a href="#" class="btn btn-primary">Buy</a>
+                                <a href="/addToCart/{{$realestate->id}}" class="btn btn-primary">Buy</a>
                             </div>
                         </div>
                     </div>
@@ -30,5 +36,7 @@
         <div class="d-flex mt-4" style="justify-content: center">
             {{$realestates->links()}}
         </div>
+
+        @endif
     </div>
 @endsection

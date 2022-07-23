@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Realestate;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RealestateController extends Controller
@@ -20,13 +22,13 @@ class RealestateController extends Controller
 
     public function rent()
     {
-        $realestates = Realestate::query()->where('sales_type', '=', 'Rent')->paginate(4);
+        $realestates = Realestate::query()->where('sales_type', '=', 'Rent')->where('status', '<>', 'Transaction completed')->paginate(4);
         return view('rent', compact('realestates'));
     }
 
     public function buy()
     {
-        $realestates = Realestate::query()->where('sales_type', '=', 'Sale')->paginate(4);
+        $realestates = Realestate::query()->where('sales_type', '=', 'Sale')->where('status', '<>', 'Transaction completed')->paginate(4);
         return view('buy', compact('realestates'));
     }
 
@@ -168,5 +170,66 @@ class RealestateController extends Controller
         $realestate->delete();
 
         return redirect()->back();
+    }
+
+    public function cart(){
+        $userId = Auth::id();
+        $user = User::find($userId);
+
+        $realestates = $user->realestates()->paginate(4);
+
+        return view('cart', compact('realestates'));
+    }
+
+    public function addToCart($id){
+        $userId = Auth::id();
+        $realestate = Realestate::find($id);
+
+        if($realestate->users()->where('user_id', $userId)->exists()){
+            return redirect()->back();
+        }
+
+        else{
+            $realestate->status = "Cart";
+            $realestate->save();
+
+            $realestate->users()->attach($userId);
+            return redirect()->back();
+        }
+    }
+
+    public function removeFromCart($id){
+        $userId = Auth::id();
+        $realestate = Realestate::find($id);
+
+        $realestate->users()->detach($userId);
+
+        if($realestate->users()->exists()){
+            return redirect()->back();
+        }
+
+        else{
+            $realestate->status = "open";
+            $realestate->save();
+
+            return redirect()->back();
+        }
+
+        return redirect('/cart');
+    }
+
+    public function checkout(){
+        $userId = Auth::id();
+        $user = User::find($userId);
+
+        foreach($user->realestates as $realestate){
+            $realestate->status = "Transaction completed";
+            $realestate->save();
+            $realestate->users()->detach();
+        }
+
+        $user->realestates()->detach();
+
+        return redirect('/')->with('success', 'Checkout Successful');
     }
 }

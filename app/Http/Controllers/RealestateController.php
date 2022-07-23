@@ -230,6 +230,6 @@ class RealestateController extends Controller
 
         $user->realestates()->detach();
 
-        return redirect('/cart');
+        return redirect('/')->with('success', 'Checkout Successful');
     }
 }

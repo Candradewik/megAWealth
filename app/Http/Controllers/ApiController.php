@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Realestate;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +45,41 @@ class ApiController extends Controller
         return response()->json([
             'Status' => 'Login Success',
             'Token' => $request->user()->createToken('BearerToken')->accessToken,
+        ]);
+    }
+
+    public function transaction(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        if ($request->email != auth()->user()->email) {
+            return response()->json([
+                'status' => 'false',
+                'message' => 'Email Unauthenticated',
+            ]);
+        }
+
+        $transactions = Realestate::where('user_id', auth()->user()->id)->get();
+        $data = new Collection();
+        foreach ($transactions as $transaction) {
+            $temp = [
+                'transaction_date' => $transaction->transaction_date,
+                'transaction_id' => $transaction->id,
+                'user_id' => $transaction->user_id,
+                'type_of_sale' => $transaction->sales_type->name,
+                'building_type' => $transaction->building_type->name,
+                'price' => $transaction->price,
+                'location' => $transaction->location,
+                'image_path' => $transaction->image,
+            ];
+            $data->push($temp);
+        }
+
+        return response()->json([
+            'transactions' => $data,
+            'user_id' => auth()->user()->id,
         ]);
     }
 }

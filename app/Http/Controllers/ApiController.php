@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,22 +28,21 @@ class ApiController extends Controller
         ]);
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8'
         ]);
 
-        if (!auth()->attempt($credentials)) {
+        if(Auth::attempt($credentials)){
             return response()->json([
-                'status' => 'Login Failed',
+                "Status" => "Login Successful",
+                'Token' => $request->user()->createToken('login')->accessToken
+            ]);
+        }else{
+            return response()->json([
+                "status" => "Login Failed"
             ]);
         }
-
-        return response()->json([
-            'Status' => 'Login Success',
-            'Token' => $request->user()->createToken('BearerToken')->accessToken,
-        ]);
     }
 }

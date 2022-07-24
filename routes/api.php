@@ -21,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [ApiController::class, 'register']);
 Route::post('login', [ApiController::class, 'login']);
-Route::post('cart', [ApiController::class, 'cart'])->middleware('auth:api');
+Route::post('transaction', [ApiController::class, 'transaction'])->middleware('auth:api');

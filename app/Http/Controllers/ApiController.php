@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Realestate;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,21 +62,29 @@ class ApiController extends Controller
             ]);
         }
 
-        $transactions = Realestate::where('user_id', auth()->user()->id)->get();
+        $userId = Auth::id();
+        $user = User::find($userId);
         $data = new Collection();
-        foreach ($transactions as $transaction) {
+
+        foreach($user->realestates as $realestate){
+            $realestate->status = "Transaction completed";
+            $realestate->save();
             $temp = [
-                'transaction_date' => $transaction->created_at,
-                'transaction_id' => $transaction->id,
-                'user_id' => $transaction->user_id,
-                'type_of_sale' => $transaction->sales_type->name,
-                'building_type' => $transaction->building_type->name,
-                'price' => $transaction->price,
-                'location' => $transaction->location,
-                'image_path' => $transaction->image,
+                'transaction_date' => Carbon::now()->format('Y-m-d'),
+                'transaction_id' => $realestate->id,
+                'user_id' => Auth::id(),
+                'type_of_sale' => $realestate->sales_type,
+                'building_type' => $realestate->building_type,
+                'price' => $realestate->price,
+                'location' => $realestate->location,
+                'image_path' => $realestate->image,
             ];
+
             $data->push($temp);
+            $realestate->users()->detach();
         }
+
+        $user->realestates()->detach();
 
         return response()->json([
             'transactions' => $data,

@@ -71,7 +71,7 @@ class ApiController extends Controller
             $realestate->save();
             $temp = [
                 'transaction_date' => Carbon::now()->format('Y-m-d'),
-                'transaction_id' => $realestate->id,
+                'transaction_id' => Carbon::now()->format('Y-m-d').$userId,
                 'user_id' => Auth::id(),
                 'type_of_sale' => $realestate->sales_type,
                 'building_type' => $realestate->building_type,

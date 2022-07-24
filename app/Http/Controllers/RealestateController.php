@@ -190,6 +190,10 @@ class RealestateController extends Controller
             return redirect()->back();
         }
 
+        else if($realestate->status == "Transaction completed"){
+            return redirect()->back();
+        }
+
         else{
             $realestate->status = "Cart";
             $realestate->save();

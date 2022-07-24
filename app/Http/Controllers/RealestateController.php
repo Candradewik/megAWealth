@@ -50,8 +50,9 @@ class RealestateController extends Controller
     public function updateStatus($id){
         $realestate = Realestate::find($id);
         $realestate->status = "Transaction completed";
-
         $realestate->save();
+
+        $realestate->users()->detach();
 
         return redirect()->back();
     }

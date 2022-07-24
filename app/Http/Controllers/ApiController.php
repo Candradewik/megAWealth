@@ -65,7 +65,7 @@ class ApiController extends Controller
         $data = new Collection();
         foreach ($transactions as $transaction) {
             $temp = [
-                'transaction_date' => $transaction->transaction_date,
+                'transaction_date' => $transaction->created_at,
                 'transaction_id' => $transaction->id,
                 'user_id' => $transaction->user_id,
                 'type_of_sale' => $transaction->sales_type->name,

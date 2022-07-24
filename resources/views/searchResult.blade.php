@@ -28,7 +28,7 @@
                             <div>
                                 <span class="badge bg-info text-dark">{{$realestate->building_type}}</span>
                                 <div class="card text-center mt-3">
-                                    <a href={{ route('login') }} class="btn btn-primary">
+                                    <a href="/addToCart/{{$realestate->id}}}" class="btn btn-primary">
                                         @if ($realestate->sales_type == "Sale")
                                         Buy
                                         @else

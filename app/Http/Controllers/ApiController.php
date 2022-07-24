@@ -40,13 +40,9 @@ class ApiController extends Controller
             ]);
         }
 
-        if ($request->remember_me) {
-            Cookie::queue('LoginCookie', $request->input('email'), 3);
-        }
-
         return response()->json([
-            'status' => 'Login Success',
-            'token' => $request->user()->createToken('BearerToken')->accessToken,
+            'Status' => 'Login Success',
+            'Token' => $request->user()->createToken('BearerToken')->accessToken,
         ]);
     }
 }

@@ -168,6 +168,7 @@ class RealestateController extends Controller
     public function destroy($id)
     {
         $realestate = Realestate::find($id);
+        $realestate->users()->detach();
         $realestate->delete();
 
         return redirect()->back();
